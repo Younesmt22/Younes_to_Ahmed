@@ -1,0 +1,9 @@
+{% extends "home.html" %}
+{% block content %}
+<h2>Are you sure you want to delete this task?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+</form>
+<a href="{% url 'task_list' %}">Cancel</a>
+{% endblock %}

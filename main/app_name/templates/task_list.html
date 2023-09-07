@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<header class="hero bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1>Welcome to Delicious Etas</h1>
+        <p class="lead">Experince the finest dining in town</p>
+        <a href="#menu" class="btn btn-light btn-lg">Explore our menu</a>
+    </div>
+</header>
+<div class="d-flex justify-content-center align-items-center mt-2">
+    <a href="{% url 'task_create' %}" class="btn btn-primary text-center">Create a plate</a>
+</div>
+<section id="menu" class="py-5">
+    <div class="container-fluid">
+        <h2 class="text-center">Our menu</h2>
+        <div class="row">
+        {% for task in tasks %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                {% if task.image %}
+                <img src="{{ task.image.url }}" class="card-img-top vh-20" style = "height: 20vh;" alt="Dish 1">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{task.name}}</h5>
+                    <p class="card-text">{{task.description}}</p>
+                    <a href="signup" class="btn btn-success">Order now</a>
+                    <a href="{% url 'update' task.id %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'delete' task.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock %}
